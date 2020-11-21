@@ -6,6 +6,21 @@ using System.Threading.Tasks;
 using ControllerInDetails.Models;
 namespace ControllerInDetails.Controllers
 {
+    public class HomeController : Controller
+    {
+        public ISimpleModel _simpleModel;
+        public HomeController(ISimpleModel simpleModel)
+        {
+            _simpleModel = simpleModel;
+        }
+        public IActionResult Index()
+        {
+            ViewBag.Message = "Datas from HomeController Action Index";
+            ViewBag.ServerTime = DateTime.Now;
+            _simpleModel.Value = "Valor desde Home Action Index";
+            return View(_simpleModel);
+        }
+    }
     public class PhotoController : Controller
     {
         public IActionResult Index()
@@ -54,7 +69,7 @@ namespace ControllerInDetails.Controllers
         public IActionResult NuevaAction()//string titulo)
         {
             string titulo = (string)RouteData.Values["Titulo"];
-            return Content($"Mensaje desde la Action: NuevaAction, parametro:{titulo}");
+            return Content($"Mensaje desde la Action: NuevaAction del Another Controller, parametro:{titulo}");
         }
     }
 }

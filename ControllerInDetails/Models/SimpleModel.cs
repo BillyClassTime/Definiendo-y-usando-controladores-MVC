@@ -5,8 +5,14 @@ using System.Threading.Tasks;
 
 namespace ControllerInDetails.Models
 {
-    public class SimpleModel
+    public interface ISimpleModel
+    {
+        string Value { get; set; }
+    }
+
+    public class SimpleModel : ISimpleModel
     {
         public string Value { get; set; }
     }
+
 }
